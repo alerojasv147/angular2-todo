@@ -1,0 +1,24 @@
+<div class="panel panel-default"
+    [ngClass]="{selected: selected}"
+    draggable="true"
+    (dragstart)="onDragStart($event)"
+    (dragend)="onDragEnd($event)">
+    <div class="panel-heading">
+        <h3 class="panel-title pull-left">{{todo.name}}</h3>
+        <a class="glyphicon glyphicon-remove pull-right" (click)="deleteTodo()"></a>
+        <div class="clearfix"></div>
+    </div>
+    <div class="panel-body" (dblclick)="toggleEdit(todoInput)">
+        <div [class.hidden]="isEditing">
+            {{todo.description}}
+        </div>
+        <textarea [class.hidden]="!isEditing"
+            #todoInput
+            [(ngModel)]="todo.description"
+            (keyup.enter)="editTodo()"
+            (keyup.escape)="toggleEdit(todoInput)"
+            (blur)="editTodo()"
+            autofocus>
+        </textarea>
+    </div>
+</div>

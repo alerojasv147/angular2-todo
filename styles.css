@@ -1,0 +1,13 @@
+.container {
+    margin-bottom: 16px;
+}
+
+.title {
+    margin: 16px 0;
+    text-align: center;
+}
+
+a.glyphicon {
+    text-decoration: none !important;
+    cursor: pointer;
+}

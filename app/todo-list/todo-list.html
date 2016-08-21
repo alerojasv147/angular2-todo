@@ -1,0 +1,128 @@
+<div class="row table-bordered">
+    <div class="col-md-4 js-col" data-col="open"
+        (dragenter)="onDragEnter($event)"
+        (dragover)="onDragOver($event)"
+        (drop)="onDrop($event)">
+        <header>
+            <b>To-Do</b>
+            <a class="glyphicon glyphicon-plus pull-right" (click)="showModal()"></a>
+        </header>
+        <ul>
+            <template ngFor let-item [ngForOf]="todos | sortBy:'lastUpdate'">
+                <template [ngIf]="item.status === 'open'">
+                    <li>
+                        <todo-item
+                            [todo]="item"
+                            (mousedown)="onSelect($event, item)"
+                            (onDelete)="deleteTodo($event)"
+                            [selected]="item === selectedTodo">
+                        </todo-item>
+                        <a class="glyphicon glyphicon-edit pull-right" (click)="showModal(item)"></a>
+                    </li>
+                </template>
+            </template>
+        </ul>
+    </div>
+
+    <div class="col-md-4 middle-col js-col" data-col="progress"
+        (dragenter)="onDragEnter($event)"
+        (dragover)="onDragOver($event)"
+        (drop)="onDrop($event)">
+        <header>
+            <b>In Progress</b>
+        </header>
+        <ul>
+            <template ngFor let-item [ngForOf]="todos  | sortBy:'lastUpdate'">
+                <template [ngIf]="item.status === 'progress'">
+                    <li>
+                        <todo-item
+                            [todo]="item"
+                            (mousedown)="onSelect($event, item)"
+                            (onDelete)="deleteTodo($event)"
+                            [selected]="item === selectedTodo">
+                        </todo-item>
+                        <a class="glyphicon glyphicon-edit pull-right" (click)="showModal(item)"></a>
+                    </li>
+                </template>
+            </template>
+        </ul>
+    </div>
+
+    <div class="col-md-4 js-col" data-col="done"
+        (dragenter)="onDragEnter($event)"
+        (dragover)="onDragOver($event)"
+        (drop)="onDrop($event)">
+        <header>
+            <b>Done</b>
+        </header>
+        <ul>
+            <template ngFor let-item [ngForOf]="todos  | sortBy:'lastUpdate'">
+                <template [ngIf]="item.status === 'done'">
+                    <li>
+                        <todo-item
+                            [todo]="item"
+                            (mousedown)="onSelect($event, item)"
+                            (onDelete)="deleteTodo($event)"
+                            [selected]="item === selectedTodo">
+                        </todo-item>
+                        <a class="glyphicon glyphicon-edit pull-right" (click)="showModal(item)"></a>
+                    </li>
+                </template>
+            </template>
+        </ul>
+    </div>
+</div>
+
+<!-- Add/Edit Modal -->
+<div class="modal fade" id="todo_modal" tabindex="-1" role="dialog" aria-labelledby="todo_modal_label">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="todo_modal_label">{{dialog.title}}</h3>
+            </div>
+            <div class="modal-body">
+                <form role="form" #todoForm="ngForm">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name" required
+                            [(ngModel)]="selectedTodo.name"
+                            #name="ngModel">
+                        <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                            Name is required
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status:</label>
+                        <select class="form-control" id="status" name="status" required
+                            [(ngModel)]="selectedTodo.status"
+                            #status="ngModel">
+                            <option [value]="'open'">Open</option>
+                            <option [value]="'progress'">In Progress</option>
+                            <option [value]="'done'">Close</option>
+                        </select>
+                        <div [hidden]="status.valid || status.pristine" class="alert alert-danger">
+                            Status is required
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <textarea class="form-control" rows="5" id="description" name="description" required
+                            [(ngModel)]="selectedTodo.description"
+                            #description="ngModel">
+                        </textarea>
+                        <div [hidden]="description.valid || description.pristine" class="alert alert-danger">
+                            Description is required
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" (click)="saveTodo()" [disabled]="!todoForm.form.valid">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

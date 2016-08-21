@@ -1,0 +1,26 @@
+textarea {
+    width:100%;
+    height: 90%;
+    border-color: #DDDDDD;
+    border-radius: 4px;
+    resize: none;
+}
+
+.panel {
+    cursor: move;
+}
+
+.panel-body {
+    height: 125px;
+}
+
+.panel-heading h3 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 90%;
+}
+
+.panel.selected {
+    background: #F5F5F5;
+}

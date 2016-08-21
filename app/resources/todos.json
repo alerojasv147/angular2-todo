@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "name": "Learn Angular 2",
+        "description": "Learn and follow the Quick Start guide.",
+        "status": "done",
+        "creationDate": "1466114128867",
+        "lastUpdate": "1466114128867"
+    },
+    {
+        "id": 2,
+        "name": "Setup Development Environment",
+        "description": "Download angular2 seed project and install all dependencies.",
+        "status": "done",
+        "creationDate": "1466114128867",
+        "lastUpdate": "1466114128868"
+    },
+    {
+        "id": 3,
+        "name": "Angular Tour of Heroes",
+        "description": "Read and follow the Angular Tour of Heroes tutorial.",
+        "status": "progress",
+        "creationDate": "1466114128867",
+        "lastUpdate": "1466114128869"
+    },
+    {
+        "id": 4,
+        "name": "Read the official documentation",
+        "description": "Read books and all the available documentation on the official site.",
+        "status": "open",
+        "creationDate": "1466114128867",
+        "lastUpdate": "1466114128866"
+    },
+    {
+        "id": 5,
+        "name": "Implement a TODO app",
+        "description": "Implement a TODO app using the angular seed project as base.",
+        "status": "open",
+        "creationDate": "1466114128867",
+        "lastUpdate": "1466114128865"
+    }
+]
